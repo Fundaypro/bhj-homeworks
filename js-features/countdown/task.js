@@ -14,9 +14,9 @@ class Timer {
 
     }
     get displayTime(){
-        const toFormat = (s)=>{
-            s = String(s)
-            return s.length < 2 ? "0"+s : s
+        const toFormat = (time)=>{
+            s = String(time)
+            return time.length < 2 ? "0"+ time : time
         }
         const sliceTime = {
             seconds : toFormat(this.time % 60),

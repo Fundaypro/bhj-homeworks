@@ -13,6 +13,7 @@ class Cookie {
         };
         
         this.clicks = {
+            lastClick: Date.now(),
             clicksMemory : [Date.now()],
             element : document.getElementById("click__speed"),
         };
@@ -23,13 +24,12 @@ class Cookie {
         setTimeout(()=>{this.element.width = "200";},100)
     }
     get clickSpeedAvg(){
-        this.clicks.clicksMemory.push(Date.now())
-        this.clicks.clicksMemory = this.clicks.clicksMemory.filter((e)=>{
-            return e  >= (Date.now() - 5000)
-        })
-        let x = this.clicks.clicksMemory.length/5
-        return x
+        const newClickTime = Date.now();
+        const timeRange = newClickTime -  this.clicks.lastClick;
+        this.clicks.lastClick = newClickTime;
+        return (1/timeRange*1000).toFixed(2)
     }
 }
 
 new Cookie()
+

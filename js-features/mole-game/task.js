@@ -18,7 +18,7 @@ class MoleGameArea {
         let cl = e.target.className.includes("hole_has-mole");
         if (cl) this.count.caught += 1;
         else this.count.misses += 1;
-        this.displayCounts;
+        this.displayCounts();
         this.alertAboutWinOrLose();
         
       });
@@ -30,7 +30,7 @@ class MoleGameArea {
   get isLose() {
     return this.count.misses >= 5;
   }
-  get displayCounts() {
+  displayCounts() {
     this.countDisplays.lost.innerText = this.count.misses;
     this.countDisplays.dead.innerText = this.count.caught;
   }
@@ -48,7 +48,7 @@ class MoleGameArea {
       caught: 0,
       misses: 0,
     };
-    this.displayCounts;
+    this.displayCounts();
   }
 }
 new MoleGameArea();
