@@ -29,13 +29,10 @@ class MainMenu {
       classList.value = "menu menu_sub";
     else classList.value = "menu menu_sub  menu_active";
     //hide another droplists
-    (function (element) {
-      
-      for (let i = 0; i < this.menuItems.length; i++) {
-        if (element !== this.menuItems[i])
-          this.menuItems[i].subMenu.classList.value = "menu menu_sub";
-      }
-    })(element);
+    for (let i = 0; i < this.menuItems.length; i++) {
+      if (element !== this.menuItems[i])
+        this.menuItems[i].subMenu.classList.value = "menu menu_sub";
+    }
   }
 }
-new MainMenu();
+const menuMain = new MainMenu();
