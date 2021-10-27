@@ -7,7 +7,7 @@ class ModalWindow {
                 closeBtn : this.modalMain.element.querySelector(".modal__close_times"),
                 modalBtn :  this.modalMain.element.querySelector(".btn"),
             }
-        //cloce modal for modalMain
+        //for modalMain
         this.modalMain.childs.closeBtn.addEventListener("click", ()=>{
             this.modalMain.element.style.display = "none";
         });
@@ -15,6 +15,7 @@ class ModalWindow {
             this.modalMain.element.style.display = "none"
             this.modalSuccess.element.style.display = "flex"
         })
+
         this.modalSuccess = {
             element : document.getElementById("modal_success"),
         }
@@ -22,7 +23,7 @@ class ModalWindow {
             closeBtn : this.modalSuccess.element.querySelector(".modal__close_times"),
             modalBtn :  this.modalSuccess.element.querySelector(".btn"),
         }
-        // cloce modal for modalSuccess
+        // for modalSuccess
         this.modalSuccess.childs.closeBtn.addEventListener("click", ()=>{
             this.modalSuccess.element.style.display = "none";
         });
