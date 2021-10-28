@@ -43,13 +43,23 @@ class KeyboardSoloGame {
             //main game function
             document.addEventListener("keyup", (event) => {
               if (event.code.includes("Key")) {
-                console.log(event.key);
-                let letter = this.interface.wordsBlock.arrOfLetters[this.interface.wordsBlock.curentLettter]
-                if(letter.innerText === event.key) {
-                  letter.style.color = "green"
-                  this.interface.wordsBlock.curentLettter+=1
+                const letterNum = this.interface.wordsBlock.curentLettter;
+                const letter =
+                  this.interface.wordsBlock.arrOfLetters[letterNum];
+                if (letter.innerText === event.key) {
+                  letter.style.color = "green";
+                  if ( letterNum < this.interface.wordsBlock.arrOfLetters.length-1) {
+                    this.interface.wordsBlock.curentLettter+= 1;
+                  } else {
+                    this.interface.writeCounter.upNum();
+                    this.interface.wordsBlock.newWord()
+                  }
                 } else {
-                  letter.style.color = "red"
+                  this.interface.wrongCounter.upNum();
+                  letter.style.color = "red";
+                  setTimeout(() => {
+                    this.interface.wordsBlock.newWord();
+                  }, 200);
                 }
               } else {
                 return false;
@@ -80,27 +90,32 @@ class KeyboardSoloGame {
           "love",
           "javascript",
         ],
-        curentLettter : 0,
-        arrOfLetters : [],
+        curentLettter: 0,
+        arrOfLetters: [],
         newWord() {
-          this.deleteWord()
+          this.deleteWord();
           let splited =
             this.wordsArr[
               Math.floor(Math.random() * this.wordsArr.length)
             ].split("");
-          
+
           splited.forEach((e) => {
             let newLetter = document.createElement("span");
             newLetter.innerText = e;
-            this.element.append(newLetter);
             this.arrOfLetters.push(newLetter);
           });
+          this.displayWord();
         },
-        deleteWord(){
+        deleteWord() {
           this.arrOfLetters = [];
           this.element.innerHTML = "";
           this.curentLettter = 0;
-        }
+        },
+        displayWord(letters = this.arrOfLetters) {
+          letters.forEach((e) => {
+            this.element.append(e);
+          });
+        },
       },
     };
   }
