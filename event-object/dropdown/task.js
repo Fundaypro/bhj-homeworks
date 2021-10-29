@@ -6,7 +6,6 @@ class DropDownMenu  {
         this.head.addEventListener("click", ()=>{
             if(this._isHiden) this.hideDropList();
             else this.revealDropList();
-            this._isHiden = !this._isHiden
         })
         this.list = {element : this.element.querySelector(".dropdown__list")}
         this.list.items = Array.from(this.list.element.children).map((e)=>{
@@ -14,10 +13,10 @@ class DropDownMenu  {
                 return {item : e.children[0] , value : value}
             })
         this.list.items.forEach((el)=>{
-            el.item.addEventListener("click", ()=>{
-                el.item.preventDefault();
+            el.item.addEventListener("click", (e)=>{
+                e.preventDefault();
                 this.setHead(el.value);
-
+                this.hideDropList()
             })
         });
         
@@ -26,9 +25,11 @@ class DropDownMenu  {
         this.head.textContent = value;
     }
     hideDropList(){
+        this._isHiden = false;
         this.list.element.className = "dropdown__list"
     }
     revealDropList(){
+        this._isHiden = true
         this.list.element.className = "dropdown__list dropdown__list_active";
     }
 }
