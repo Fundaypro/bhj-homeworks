@@ -89,3 +89,9 @@ body {
 .product-shadow {
   position: absolute;
 }
+.product__anumation {
+  position: absolute;
+  width: 100px;
+  z-index: 5;
+  opacity: .9;
+}
